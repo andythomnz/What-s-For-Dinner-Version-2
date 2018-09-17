@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, Image, ScrollView, View, Button, Alert, Slider} from 'react-native';
+import {Platform, StyleSheet, Text, Image, ScrollView, View, /*Button,*/ Alert, Slider} from 'react-native';
+import {Container, Footer, FooterTab, Title, Button, Icon} from 'native-base';
 
 export default class Home extends Component {
+    static navigationOptions = {
+        title: 'What\'s For Dinner?',
+      };
+
     constructor(props) {
       super(props);
       this.state = {costValue: 0, costDescription: 'Cheap', convenienceValue: 0, convenienceDescription: 'Quick & Easy'};
@@ -9,48 +14,77 @@ export default class Home extends Component {
   
     render() {
       return (
-        <View>
-  
-  
-          <Text style={styles.welcome}>What's For Dinner</Text>
-          <Text style={styles.body}>You must be having a busy day! Dinner was 3 hours ago!</Text>
-  
-          {/* Cost Slider */}
-          <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center'}}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text>I want a meal that is:</Text>
-              <Text style={styles.mealDescriptor}>{this.state.costDescription}</Text>
+        <Container>
+            <View style={styles.container}>
+    
+            <Text style={styles.body}>You must be having a busy day! Dinner was 3 hours ago!</Text>
+    
+            {/* Cost Slider */}
+            <View style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center'}}>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text>I want a meal that is:</Text>
+                <Text style={styles.mealDescriptor}>{this.state.costDescription}</Text>
+                </View>
+                <Slider
+                value={this.state.costValue}
+                onValueChange={(costValue) => this.costSliderChange(costValue)}
+                maximumValue={2}
+                step={1}
+                />
             </View>
-            <Slider
-              value={this.state.costValue}
-              onValueChange={(costValue) => this.costSliderChange(costValue)}
-              maximumValue={2}
-              step={1}
-              />
-          </View>
-  
-          {/* Convenience Slider */}
-          <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center'}}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text>I want a meal that is:</Text>
-              <Text style={styles.mealDescriptor}>{this.state.convenienceDescription}</Text>
+    
+            {/* Convenience Slider */}
+            <View style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center'}}>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text>I want a meal that is:</Text>
+                <Text style={styles.mealDescriptor}>{this.state.convenienceDescription}</Text>
+                </View>
+                <Slider
+                value={this.state.convenienceValue}
+                onValueChange={(convenienceValue) => this.convenienceSliderChange(convenienceValue)}
+                maximumValue={2}
+                step={1}
+                />
             </View>
-            <Slider
-              value={this.state.convenienceValue}
-              onValueChange={(convenienceValue) => this.convenienceSliderChange(convenienceValue)}
-              maximumValue={2}
-              step={1}
-              />
-          </View>
-  
-          {/* Choose Meal Button */}
-          <Button
-            title="Press Me"
-            color="#038439"
-            onPress={() => {Alert.alert('You tapped the button!');
-            }} />
-  
-        </View>
+    
+            {/* Choose Meal Button */}
+                {/* <Button
+                title="Press Me"
+                color="#038439"
+                onPress={() => {Alert.alert('You tapped the button!');
+                }} />
+
+                <Button
+                title="Add some meals"
+                onPress={() =>
+                    this.props.navigation.navigate('Meals')
+                }/> */}
+    
+            </View>
+
+            <Footer>
+                <FooterTab>
+                    <Button transparent>
+                        <Icon size={30} color={'#fff'} name={'restaurant'} />
+                        <Text numberOfLines={1}>What To Eat</Text>
+                    </Button>
+                 </FooterTab>
+
+                <FooterTab>
+                    <Button transparent>
+                        <Icon size={30} color={'#fff'} name={'pizza'} />
+                        <Text numberOfLines={1}>Meals</Text>
+                    </Button>
+                 </FooterTab>
+
+                <FooterTab>
+                    <Button transparent >
+                        <Icon size={25} color={'#fff'} name={'ios-cog'}/>
+                        <Text numberOfLines={1}>Settings</Text>
+                    </Button>
+                </FooterTab>
+            </Footer>
+        </Container>
       );
     }
   

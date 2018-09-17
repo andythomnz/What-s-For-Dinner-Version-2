@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, Image, ScrollView, View, Button, Alert, Slider} from 'react-native';
-import Home from './Home';
+import AppNavigator from './AppNavigator';
 
 
 //type Props = {};
@@ -18,19 +18,7 @@ import Home from './Home';
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Home />
-      </View>
+        <AppNavigator />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 30,
-  }
-});

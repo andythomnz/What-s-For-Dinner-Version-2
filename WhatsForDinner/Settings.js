@@ -3,17 +3,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import {Container, Footer, FooterTab, Title, Button, Icon} from 'native-base';
 import Tabs from './Tabs';
 
-export default class Meals extends React.Component {
+export default class Settings extends React.Component {
 
     static navigationOptions = {
-        title: 'Meals',
+        title: 'Settings',
       };
 
   render() {
     return (
       <Container>
       <View style={styles.container}>
-        <Text>Add meals here!</Text>
+        <Text>Add settings here!</Text>
       </View>
       <View>
         <Tabs navigation={this.props.navigation}> </Tabs>

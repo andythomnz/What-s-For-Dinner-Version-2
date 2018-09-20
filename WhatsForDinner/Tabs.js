@@ -1,38 +1,52 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { StyleSheet, Text, View } from 'react-native';
-import {Container, Footer, FooterTab, Title, Button, Icon} from 'native-base';
+import {Container, Footer, FooterTab, Title, Button, StyleProvider} from 'native-base';
+import getTheme from './native-base-theme/components';
+import material from './native-base-theme/variables/material';
 
 export default class Tabs extends React.Component {
+
+  constructor(props) {
+      super(props);
+      this.state = {activeTab: 0};
+  }
+    
   render() {
     return (
-        <Footer>
-            <FooterTab>
-                <Button 
-                onPress={() => {this.props.navigation.navigate('Home');}}
-                transparent>
-                    <Icon size={30} color={'#fff'} name={'restaurant'} />
-                    <Text numberOfLines={1}>What To Eat</Text>
-                </Button>
-            </FooterTab>
+        <StyleProvider style={getTheme(material)}>
+            <Footer >
+                <FooterTab>
+                    <Button
+                    active = {this.state.activeTab === 0}
+                    onPress={() => {this.props.navigation.replace('Home'); this.state.activeTab = 0;}}
+                    transparent>
+                        <Icon size={30} color={'#666161'} name={'ios-restaurant'} />
+                        <Text numberOfLines={1}>What To Eat</Text>
+                    </Button>
+                </FooterTab>
 
-            <FooterTab>
-                <Button 
-                onPress={() => {this.props.navigation.navigate('Meals');}}
-                transparent>
-                    <Icon size={30} color={'#fff'} name={'pizza'} />
-                    <Text numberOfLines={1}>Meals</Text>
-                </Button>
-            </FooterTab>
+                <FooterTab>
+                    <Button 
+                    active = {this.state.activeTab === 1}
+                    onPress={() => {this.props.navigation.replace('Meals');  this.state.activeTab = 1;}}
+                    transparent>
+                        <Icon size={30} color={'#666161'} name={'md-pizza'} />
+                        <Text numberOfLines={1}>Meals</Text>
+                    </Button>
+                </FooterTab>
 
-            <FooterTab>
-                <Button 
-                onPress={() => {this.props.navigation.navigate('Settings');}}
-                transparent >
-                    <Icon size={25} color={'#fff'} name={'ios-cog'}/>
-                    <Text numberOfLines={1}>Settings</Text>
-                </Button>
-            </FooterTab>
-        </Footer>
+                <FooterTab>
+                    <Button 
+                    active = {this.state.activeTab === 2}
+                    onPress={() => {this.props.navigation.replace('Settings');  this.state.activeTab = 2;}}
+                    transparent >
+                        <Icon size={25} color={'#666161'} name={'md-settings'}/>
+                        <Text numberOfLines={1}>Settings</Text>
+                    </Button>
+                </FooterTab>
+            </Footer>
+        </StyleProvider>
     );
   }
 }

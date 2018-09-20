@@ -6,6 +6,7 @@ import Tabs from './Tabs';
 export default class Home extends Component {
     static navigationOptions = {
         title: 'What\'s For Dinner?',
+        headerLeft: null,
       };
 
     constructor(props) {

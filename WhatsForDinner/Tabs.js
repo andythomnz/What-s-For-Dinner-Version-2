@@ -16,20 +16,22 @@ export default class Tabs extends React.Component {
     return (
         <StyleProvider style={getTheme(material)}>
             <Footer >
-                <FooterTab>
-                    <Button
-                    active = {this.state.activeTab === 0}
-                    onPress={() => {this.props.navigation.replace('Home'); this.state.activeTab = 0;}}
-                    transparent>
-                        <Icon size={30} color={'#666161'} name={'ios-restaurant'} />
-                        <Text numberOfLines={1}>What To Eat</Text>
-                    </Button>
-                </FooterTab>
+                <StyleProvider style={getTheme(material)}>
+                    <FooterTab>
+                        <Button
+                        active = {this.state.activeTab === 0}
+                        onPress={() => {this.props.navigation.replace('Home'); this.setState({activeTab: 0});}}
+                        transparent>
+                            <Icon size={30} color={'#666161'} name={'ios-restaurant'} />
+                            <Text numberOfLines={1}>What To Eat</Text>
+                        </Button>
+                    </FooterTab>
+                </StyleProvider>
 
                 <FooterTab>
-                    <Button 
+                    <Button
                     active = {this.state.activeTab === 1}
-                    onPress={() => {this.props.navigation.replace('Meals');  this.state.activeTab = 1;}}
+                    onPress={() => {this.props.navigation.replace('Meals');  this.setState({activeTab: 1});}}
                     transparent>
                         <Icon size={30} color={'#666161'} name={'md-pizza'} />
                         <Text numberOfLines={1}>Meals</Text>
@@ -37,9 +39,9 @@ export default class Tabs extends React.Component {
                 </FooterTab>
 
                 <FooterTab>
-                    <Button 
+                    <Button
                     active = {this.state.activeTab === 2}
-                    onPress={() => {this.props.navigation.replace('Settings');  this.state.activeTab = 2;}}
+                    onPress={() => {this.props.navigation.replace('Settings'); this.setState({activeTab: 2});}}
                     transparent >
                         <Icon size={25} color={'#666161'} name={'md-settings'}/>
                         <Text numberOfLines={1}>Settings</Text>

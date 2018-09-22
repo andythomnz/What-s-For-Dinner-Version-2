@@ -144,10 +144,6 @@ export default class NewMeal extends React.Component {
 
       </View>
 
-
-      <View>
-        <Tabs navigation={this.props.navigation}> </Tabs>
-        </View>
       </Container>
     );
   }

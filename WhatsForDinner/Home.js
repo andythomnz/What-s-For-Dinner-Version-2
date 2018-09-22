@@ -5,7 +5,35 @@ import Tabs from './Tabs';
 
 export default class Home extends Component {
 
-    meals = this.props.navigation.getParam('meals', []);
+    //Default meals when app is used first time
+    meals = [
+        {
+            "name": "Spaghetti Bolognese",
+            "convenience": 2,
+            "cost": 1,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true
+        },
+        {
+            "name": "Toast",
+            "convenience": 0,
+            "cost": 0,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true
+        },
+        {
+            "name": "Caesar Salad",
+            "convenience": 1,
+            "cost": 1,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": false
+        }
+    ]
+
+    mealsNew = this.props.navigation.getParam('meals', []);
 
     static navigationOptions = {
         title: 'What\'s For Dinner?',
@@ -18,10 +46,15 @@ export default class Home extends Component {
     }
   
     render() {
+      if (this.mealsNew.length > this.meals.length) {
+        this.meals = this.mealsNew.slice(0);
+      }
+
       if (this.meals !== []) {
         console.log("Home Page received following meals: ");
         console.log(this.meals);
       }  
+      
 
       return (
         <Container>
@@ -63,7 +96,7 @@ export default class Home extends Component {
                 
                 <View>
                     <Button style={{backgroundColor: '#4cd964', alignItems: 'center'}}
-                            onPress={() => {Alert.alert('You tapped the button!');}} >
+                            onPress={() => {this.props.navigation.navigate('ChosenMeal', {chosenMeal: this.meals[0]});}} >
                         <Text style={{margin: 5}}>Help Me Choose My Dinner!</Text>
                     </Button>
                 </View>    

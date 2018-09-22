@@ -75,11 +75,7 @@ export default class ViewMeal extends React.Component {
             </Content>
 
       </View>
-
-
-      <View>
-        <Tabs navigation={this.props.navigation}> </Tabs>
-        </View>
+      
       </Container>
     );
   }

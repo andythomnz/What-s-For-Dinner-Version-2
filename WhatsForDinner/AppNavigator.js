@@ -4,6 +4,7 @@ import Meals from './Meals';
 import Settings from './Settings';
 import Tabs from './Tabs';
 import NewMeal from './NewMeal';
+import ViewMeal from './ViewMeal';
 
 const AppNavigator = createStackNavigator({
 
@@ -11,7 +12,8 @@ const AppNavigator = createStackNavigator({
   Meals: { screen: Meals},
   Settings: { screen: Settings},
   Tabs: {screen: Tabs},
-  NewMeal: {screen: NewMeal}
+  NewMeal: {screen: NewMeal},
+  ViewMeal: { screen: ViewMeal }
   
 });
 

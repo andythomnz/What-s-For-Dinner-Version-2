@@ -41,7 +41,7 @@ export default class Tabs extends React.Component {
   }
     
   render() {
-      console.log("Inside of tabs!!!");
+    
     return (
         <StyleProvider style={getTheme(material)}>
             <Footer >

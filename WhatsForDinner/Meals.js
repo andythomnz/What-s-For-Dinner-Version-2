@@ -5,6 +5,8 @@ import Tabs from './Tabs';
 
 export default class Meals extends React.Component {
 
+    meals = this.props.navigation.getParam('meals', []);
+
     static navigationOptions = ({ navigation, screenProps }) => ({
         title: "Meals",
         headerLeft: null,
@@ -14,7 +16,13 @@ export default class Meals extends React.Component {
   
       
   render() {
-    const meals = this.props.navigation.getParam('meals', []);
+    newMeal = this.props.navigation.getParam('newMeal', 'none');
+    console.log("New Meal is: ");
+    console.log(newMeal);
+    if (newMeal != 'none') {
+        console.log("adding new meal from Meals page!");
+       this.meals.push(newMeal);
+    }
     
     return (
       <Container>
@@ -24,9 +32,10 @@ export default class Meals extends React.Component {
 
                 <View>
                     <List
-                    dataArray={meals}
+                    dataArray={this.meals}
                     renderRow={(meal) =>
-                    <ListItem>
+                    <ListItem
+                    onPress={() => {this.props.navigation.navigate('ViewMeal', {mealToView: meal})}}>
                         <Text>{meal.name}</Text>
                     </ListItem>
                     }>

@@ -5,7 +5,9 @@ import {Container, Footer, FooterTab, Title, Button, List, Icon, ListItem, Conte
 import CheckBox from 'react-native-check-box';
 import Tabs from './Tabs';
 
-export default class Meals extends React.Component {
+export default class NewMeal extends React.Component {
+
+    
 
     static navigationOptions = {
         title: 'New Meal',
@@ -23,28 +25,20 @@ export default class Meals extends React.Component {
     costDescriptions = ["Cheap", "Moderate", "Expensive"];
     convenienceDescriptions=["Quick & Easy", "Moderate", "Complex"];
 
-   toggleBreakfast() {
-        // if (this.state.breakfast===true) {
-        //     this.setState({"name": this.state.name, 
-        //     "cost": this.state.name, 
-        //     "convenience": this.state.convenience,
-        //     "breakfast": false,
-        //     "lunch": this.state.lunch,
-        //     "dinner": this.state.dinner});
-        // }else {
-        //     this.setState({"name": this.state.name, 
-        //     "cost": this.state.name, 
-        //     "convenience": this.state.convenience,
-        //     "breakfast": true,
-        //     "lunch": this.state.lunch,
-        //     "dinner": this.state.dinner});
-        // }
+   addMeal() {
+        let newMeal = {
+            "name": this.state.name,
+            "convenience": this.state.convenience,
+            "cost": this.state.cost,
+            "breakfast": this.state.breakfast,
+            "lunch": this.state.lunch,
+            "dinner": this.state.dinner
+        }
+
+        this.props.navigation.navigate('Meals', {newMeal: newMeal});
    }
       
   render() {
-    console.log("Breakfast is " + this.state.breakfast);
-    console.log("Lunch is " + this.state.lunch);
-    console.log("Dinner is " + this.state.dinner);
     return (
       <Container>
         <View style={styles.container}>
@@ -138,7 +132,7 @@ export default class Meals extends React.Component {
                 
                 <View style={{marginTop: 40, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                     <Button style={{backgroundColor: '#4cd964', alignItems: 'center'}}
-                            onPress={() => {Alert.alert('You tapped the button!');}} >
+                            onPress={() => {this.addMeal();}} >
                         <Text style={{margin: 5}}>Add Meal</Text>
                     </Button>
                 </View>    

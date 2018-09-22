@@ -16,11 +16,16 @@ export default class Meals extends React.Component {
   
       
   render() {
+    if (this.props.navigation.getParam('meals', []) !== []) {
+        console.log("MEALS GOT PASSED A NEW SET OF MEALS!:");
+        console.log(this.props.navigation.getParam('meals', []));
+        this.meals = this.props.navigation.getParam('meals', []);
+    }
     newMeal = this.props.navigation.getParam('newMeal', 'none');
     console.log("New Meal is: ");
     console.log(newMeal);
     if (newMeal != 'none') {
-        console.log("adding new meal from Meals page!");
+        console.log("adding new meal provided from NewMeal page to Meals page!");
        this.meals.push(newMeal);
     }
     
@@ -47,7 +52,7 @@ export default class Meals extends React.Component {
 
 
       <View>
-        <Tabs navigation={this.props.navigation}> </Tabs>
+        <Tabs navigation={this.props.navigation} meals={this.meals}> </Tabs>
         </View>
       </Container>
     );

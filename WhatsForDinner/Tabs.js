@@ -33,6 +33,8 @@ export default class Tabs extends React.Component {
               "dinner": false
           }
     ]
+
+    newMeals = this.props.meals;
       
 
   constructor(props) {
@@ -41,6 +43,12 @@ export default class Tabs extends React.Component {
   }
     
   render() {
+    if (this.newMeals !== undefined && (this.newMeals.length >= this.meals.length)) {
+        console.log("Updating the list of meals in the Tabs component");
+        this.meals = this.newMeals.slice(0);
+    }
+    console.log("Meals contains the following: ");
+    console.log(this.meals);
     
     return (
         <StyleProvider style={getTheme(material)}>
@@ -49,7 +57,7 @@ export default class Tabs extends React.Component {
                     <FooterTab>
                         <Button
                         active = {this.state.activeTab === 0}
-                        onPress={() => {this.props.navigation.replace('Home'); this.setState({activeTab: 0});}}
+                        onPress={() => {this.props.navigation.replace('Home', {meals: this.meals}); this.setState({activeTab: 0});}}
                         transparent>
                             <Icon size={30} color={'#666161'} name={'ios-restaurant'} />
                             <Text numberOfLines={1}>What To Eat</Text>
@@ -70,7 +78,7 @@ export default class Tabs extends React.Component {
                 <FooterTab>
                     <Button
                     active = {this.state.activeTab === 2}
-                    onPress={() => {this.props.navigation.replace('Settings'); this.setState({activeTab: 2});}}
+                    onPress={() => {this.props.navigation.replace('Settings', {meals: this.meals}); this.setState({activeTab: 2});}}
                     transparent >
                         <Icon size={25} color={'#666161'} name={'md-settings'}/>
                         <Text numberOfLines={1}>Settings</Text>

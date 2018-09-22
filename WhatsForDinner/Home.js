@@ -4,6 +4,9 @@ import {Container, Footer, FooterTab, Title, Button, Icon} from 'native-base';
 import Tabs from './Tabs';
 
 export default class Home extends Component {
+
+    meals = this.props.navigation.getParam('meals', []);
+
     static navigationOptions = {
         title: 'What\'s For Dinner?',
         headerLeft: null,
@@ -15,6 +18,11 @@ export default class Home extends Component {
     }
   
     render() {
+      if (this.meals !== []) {
+        console.log("Home Page received following meals: ");
+        console.log(this.meals);
+      }  
+
       return (
         <Container>
             <View style={styles.container}>
@@ -62,7 +70,7 @@ export default class Home extends Component {
     
             </View>
 
-            <Tabs navigation={this.props.navigation}/>
+            <Tabs navigation={this.props.navigation} meals={this.meals}/>
 
         </Container>
       );

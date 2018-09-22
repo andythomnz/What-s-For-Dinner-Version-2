@@ -5,6 +5,8 @@ import Tabs from './Tabs';
 
 export default class Settings extends React.Component {
 
+    meals = this.props.navigation.getParam('meals', []);
+
     static navigationOptions = {
         title: 'Settings',
         headerLeft: null,
@@ -17,7 +19,7 @@ export default class Settings extends React.Component {
         <Text>Add settings here!</Text>
       </View>
       <View>
-        <Tabs navigation={this.props.navigation}> </Tabs>
+        <Tabs navigation={this.props.navigation} meals={this.meals}> </Tabs>
       </View>
       </Container>
     );

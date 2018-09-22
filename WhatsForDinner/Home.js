@@ -24,6 +24,30 @@ export default class Home extends Component {
             "dinner": true
         },
         {
+            "name": "Instant Noodles",
+            "convenience": 0,
+            "cost": 0,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true
+        },
+        {
+            "name": "Soup",
+            "convenience": 0,
+            "cost": 0,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true
+        },
+        {
+            "name": "McDonalds",
+            "convenience": 0,
+            "cost": 0,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true
+        },
+        {
             "name": "Caesar Salad",
             "convenience": 1,
             "cost": 1,
@@ -44,6 +68,8 @@ export default class Home extends Component {
       super(props);
       this.state = {costValue: 0, costDescription: 'Cheap', convenienceValue: 0, convenienceDescription: 'Quick & Easy'};
     }
+
+    
   
     render() {
       if (this.mealsNew.length > this.meals.length) {
@@ -53,7 +79,8 @@ export default class Home extends Component {
       if (this.meals !== []) {
         console.log("Home Page received following meals: ");
         console.log(this.meals);
-      }  
+      } 
+    
       
 
       return (
@@ -96,7 +123,7 @@ export default class Home extends Component {
                 
                 <View>
                     <Button style={{backgroundColor: '#4cd964', alignItems: 'center'}}
-                            onPress={() => {this.props.navigation.navigate('ChosenMeal', {chosenMeal: this.meals[0]});}} >
+                            onPress={() => {this.chooseMeal();} } >
                         <Text style={{margin: 5}}>Help Me Choose My Dinner!</Text>
                     </Button>
                 </View>    
@@ -109,6 +136,23 @@ export default class Home extends Component {
       );
     }
   
+    chooseMeal() {
+        let appropriateMeals = [];
+
+        for (var i=0; i < this.meals.length; i++) {
+            let currentMeal  = this.meals[i];
+            if (currentMeal.cost === this.state.costValue && currentMeal.convenience === this.state.convenienceValue) {
+                appropriateMeals.push(currentMeal);
+            }
+        }
+
+        console.log("Found " + appropriateMeals.length + " appropriate meals");
+
+        let randomIndex = Math.floor(Math.random() * (appropriateMeals.length));
+
+
+        this.props.navigation.navigate('ChosenMeal', {chosenMeal: appropriateMeals[randomIndex]});
+    }
   
     costSliderChange(costValue) {
       this.setState({costValue});

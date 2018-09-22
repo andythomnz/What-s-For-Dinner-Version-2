@@ -5,49 +5,17 @@ import Tabs from './Tabs';
 
 export default class Meals extends React.Component {
 
-    // static navigationOptions = {
-    //     headerTitle: 'Meals',
-    //     headerLeft: null,
-    //     headerRight: (
-    //         <Text style={{fontWeight: 'bold', fontSize: 18}} onPress={() => this.props.navigation.navigate('NewMeal')}> +   </Text>
-    //       ),
-    //   };
-
     static navigationOptions = ({ navigation, screenProps }) => ({
         title: "Meals",
         headerLeft: null,
         headerRight: <Text style={{fontWeight: 'bold', fontSize: 18}} onPress={()=>{ navigation.navigate('NewMeal'); }}> +   </Text>,
       });
 
-  state = {
-      meals: [
-        {
-            "name": "Spaghetti Bolognese",
-            "convenience": 2,
-            "cost": 1,
-            "breakfast": false,
-            "lunch": true,
-            "dinner": true
-        },
-        {
-            "name": "Toast",
-            "convenience": 0,
-            "cost": 0,
-            "breakfast": true,
-            "lunch": true,
-            "dinner": true
-        },
-        {
-            "name": "Caesar Salad",
-            "convenience": 1,
-            "cost": 1,
-            "breakfast": false,
-            "lunch": true,
-            "dinner": false
-        }]
-  }
+  
       
   render() {
+    const meals = this.props.navigation.getParam('meals', []);
+    
     return (
       <Container>
         <View style={styles.container}>
@@ -56,7 +24,7 @@ export default class Meals extends React.Component {
 
                 <View>
                     <List
-                    dataArray={this.state.meals}
+                    dataArray={meals}
                     renderRow={(meal) =>
                     <ListItem>
                         <Text>{meal.name}</Text>

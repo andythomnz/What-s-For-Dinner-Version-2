@@ -61,7 +61,7 @@ export default class Meals extends React.Component {
 
                     {/* Cost Slider */}
                     <Item>
-                        <View style={{flex: 1}}>
+                        <View style={{flex: 1, marginBottom: 10}}>
                             <View style={{flexDirection: 'row', justifyContent: 'space-between', margin: 10}}>
                                 <Text>I want a meal that is:</Text>
                                 <Text style={styles.mealDescriptor}>{this.costDescriptions[this.state.cost]}</Text>
@@ -78,7 +78,7 @@ export default class Meals extends React.Component {
         
                 {/* Convenience Slider */}
                 <Item>
-                        <View style={{flex: 1}}>
+                        <View style={{flex: 1, marginBottom: 10}}>
                             <View style={{flexDirection: 'row', justifyContent: 'space-between', margin: 10}}>
                                 <Text>I want a meal that is:</Text>
                                 <Text style={styles.mealDescriptor}>{this.convenienceDescriptions[this.state.convenience]}</Text>
@@ -133,6 +133,15 @@ export default class Meals extends React.Component {
                         
                     </View>
                 </Item>
+
+                {/* Choose Meal Button */}
+                
+                <View style={{marginTop: 40, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Button style={{backgroundColor: '#4cd964', alignItems: 'center'}}
+                            onPress={() => {Alert.alert('You tapped the button!');}} >
+                        <Text style={{margin: 5}}>Add Meal</Text>
+                    </Button>
+                </View>    
                 
                 </Form>
 

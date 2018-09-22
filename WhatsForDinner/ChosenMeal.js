@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Slider, Image, ActivityIndicator} from 'react-native';
+import { StyleSheet, View, Slider, Image, ActivityIndicator, Dimensions} from 'react-native';
 import {Container, Footer, FooterTab, Title, Button, List, Icon, ListItem, Content, Form, Item, Input, Label, Text, Body} from 'native-base';
 import Spinner from 'react-native-loading-spinner-overlay';
 
@@ -9,7 +9,8 @@ export default class ChosenMeal extends React.Component {
     chosenMeal = this.props.navigation.getParam('chosenMeal', {});
 
     state = {
-        visible: true
+        visible: true,
+        imageURL: "123345567889.com/12334456778.jpg"
     };
 
     
@@ -20,6 +21,40 @@ export default class ChosenMeal extends React.Component {
 
     costDescriptions = ["Cheap", "Moderate", "Expensive"];
     convenienceDescriptions=["Quick & Easy", "Moderate", "Complex"];
+
+    constructor(props) {
+        super(props);
+        this.apiRequest();
+      }
+
+
+    async apiRequest() {
+        try {
+            let url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyDFYAcCzPMsvZgVHr8z7Tz1lsrPKZyjChM&cx=018029367248808413633:jdmvtl6gj_s&q=";
+            url = url + this.chosenMeal.name;
+            url = url + "&searchType=image&imgSize=medium";
+          let response = await fetch(url);
+          let responseJson = await response.json();
+          console.log(responseJson);
+          
+          let imageURL = responseJson.items[0].link;
+          let imageWidth = responseJson.items[0].image.width;
+          let imageHeight = responseJson.items[0].image.height;
+
+          let deviceWidth = Dimensions.get('window').width;
+          let deviceHeight = Dimensions.get('window').height;
+
+          this.setState({imageURL: imageURL});
+          this.setState({visible: true});
+
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      componentDidMount() {
+        this.setState({visible: true});
+      }
    
       
   render() {
@@ -50,7 +85,8 @@ export default class ChosenMeal extends React.Component {
                     
                     <Image
                     style={{width: 200, height: 280}}
-                    source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Jordan-19A-017_-_A_really_big_sandbox.jpg'}}
+                    source={{uri: this.state.imageURL}}
+                    onLoadStart={ ()=>{ this.setState({ visible: true });}}
                     onLoadEnd={ ()=>{ this.setState({ visible: false });}}>
 
                     </Image>

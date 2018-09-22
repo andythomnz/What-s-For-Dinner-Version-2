@@ -10,7 +10,9 @@ export default class ChosenMeal extends React.Component {
 
     state = {
         visible: true,
-        imageURL: "123345567889.com/12334456778.jpg"
+        imageURL: "123345567889.com/12334456778.jpg",
+        imageWidth: 0,
+        imageHeight: 0
     };
 
     
@@ -44,7 +46,14 @@ export default class ChosenMeal extends React.Component {
           let deviceWidth = Dimensions.get('window').width;
           let deviceHeight = Dimensions.get('window').height;
 
+          while ((imageWidth > (deviceWidth * 0.75)) || (imageHeight > (deviceHeight * 0.66))) {
+            imageWidth = imageWidth * 0.95;
+            imageHeight = imageHeight * 0.95;
+          }
+
           this.setState({imageURL: imageURL});
+          this.setState({imageWidth: imageWidth});
+          this.setState({imageHeight: imageHeight});
           this.setState({visible: true});
 
         } catch (error) {
@@ -84,7 +93,9 @@ export default class ChosenMeal extends React.Component {
 
                     
                     <Image
-                    style={{width: 200, height: 280}}
+                    style={{
+                        width: this.state.imageWidth,
+                        height: this.state.imageHeight}}
                     source={{uri: this.state.imageURL}}
                     onLoadStart={ ()=>{ this.setState({ visible: true });}}
                     onLoadEnd={ ()=>{ this.setState({ visible: false });}}>

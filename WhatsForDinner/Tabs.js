@@ -6,49 +6,108 @@ import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/material';
 
 export default class Tabs extends React.Component {
-
-    //  meals = [
-    //       {
-    //           "name": "Spaghetti Bolognese",
-    //           "convenience": 2,
-    //           "cost": 1,
-    //           "breakfast": false,
-    //           "lunch": true,
-    //           "dinner": true
-    //       },
-    //       {
-    //           "name": "Toast",
-    //           "convenience": 0,
-    //           "cost": 0,
-    //           "breakfast": true,
-    //           "lunch": true,
-    //           "dinner": true
-    //       },
-    //       {
-    //           "name": "Caesar Salad",
-    //           "convenience": 1,
-    //           "cost": 1,
-    //           "breakfast": false,
-    //           "lunch": true,
-    //           "dinner": false
-    //       }
-    // ]
-
     meals = [];
 
     newMeals = this.props.meals;
+
+
+    settings = {
+        breakfast: '09:00',
+        lunch: '13:00',
+        dinner: '19:00',
+        breakfastPicker: false,
+        lunchPicker: false,
+        dinnerPicker: false
+    }
       
 
   constructor(props) {
       super(props);
       this.state = {activeTab: 0};
   }
+
+  componentDidUpdate() {
+    // if (this.newMeals !== undefined && (this.newMeals.length >= this.meals.length)) {
+    //     console.log("Updating the list of meals in the Tabs component");
+    //     this.meals = this.newMeals.slice(0);
+    // }
+
+    // let mealToDelete = this.props.navigation.getParam('mealToDelete', {});
+    // if (mealToDelete !== 'undefined') {
+    //     console.log("found a meal to be deleted");
+    //     let indexToDelete = this.meals.indexOf(mealToDelete);
+    //     console.log("I should delete " + mealToDelete.name);
+    //     console.log("The meals list currently contains");
+    //     console.log(this.meals);
+    //     console.log("the index to be deleted is: " + indexToDelete);
+    //     if (indexToDelete > -1) {
+    //         this.meals.splice(indexToDelete,1);
+    //         console.log("After deletion, meals now includes: ");
+    //         console.log(this.meals);
+    //         this.forceUpdate();
+    //     }
+    // }
+
+
+    // console.log("Meals contains the following: ");
+    // console.log(this.meals);
+
+    //this.forceUpdate();
+  }
     
   render() {
+
+    // if (this.newMeals !== undefined && (this.newMeals.length >= this.meals.length)) {
+    //     console.log("Updating the list of meals in the Tabs component");
+    //     this.meals = this.newMeals.slice(0);
+    // }
+
+    // let mealToDelete = this.props.navigation.getParam('mealToDelete', {});
+    // if (mealToDelete !== undefined) {
+    //     console.log("found a meal to be deleted");
+    //     let indexToDelete = this.meals.indexOf(mealToDelete);
+    //     console.log("I should delete " + mealToDelete.name);
+    //     if (indexToDelete > -1) {
+    //         this.meals.splice(indexToDelete,1);
+    //     }
+    // }
+
+
+    // console.log("Meals contains the following: ");
+    // console.log(this.meals);
+
+    // let newSettings = this.props.navigation.getParam('settings', {});
+    // if (newSettings != {}) {
+    //     console.log("updating settings");
+    //     this.settings = newSettings;
+    //     console.log("Settings are in Tabs as follows:");
+    //     console.log(this.settings);
+    // }
+
+
     if (this.newMeals !== undefined && (this.newMeals.length >= this.meals.length)) {
         console.log("Updating the list of meals in the Tabs component");
         this.meals = this.newMeals.slice(0);
     }
+
+    let mealToDelete = this.props.navigation.getParam('mealToDelete', {});
+    if (mealToDelete !== 'undefined') {
+        console.log("found a meal to be deleted");
+        let indexToDelete = this.meals.indexOf(mealToDelete);
+        console.log("I should delete " + mealToDelete.name);
+        console.log("The meals list currently contains");
+        console.log(this.meals);
+        console.log("the index to be deleted is: " + indexToDelete);
+        if (indexToDelete > -1) {
+            this.meals.splice(indexToDelete,1);
+            console.log("After deletion, meals now includes: ");
+            console.log(this.meals);
+        }
+    }
+
+
+
+
     console.log("Meals contains the following: ");
     console.log(this.meals);
     
@@ -80,7 +139,7 @@ export default class Tabs extends React.Component {
                 <FooterTab>
                     <Button
                     active = {this.state.activeTab === 2}
-                    onPress={() => {this.props.navigation.replace('Settings', {meals: this.meals}); this.setState({activeTab: 2});}}
+                    onPress={() => {this.props.navigation.replace('Settings', {meals: this.meals, settings: this.settings}); this.setState({activeTab: 2});}}
                     transparent >
                         <Icon size={25} color={'#666161'} name={'md-settings'}/>
                         <Text numberOfLines={1}>Settings</Text>

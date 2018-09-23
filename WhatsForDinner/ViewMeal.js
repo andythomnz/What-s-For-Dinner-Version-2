@@ -11,9 +11,10 @@ export default class ViewMeal extends React.Component {
 
     
 
-    static navigationOptions = {
+    static navigationOptions = ({ navigation, screenProps }) => ({
         title: 'View Meal',
-      };
+        headerRight: <Text style={{color: '#007aff'}} onPress={()=>{ navigation.navigate('EditMeal', {mealToView: navigation.getParam('mealToView', {})}); }}> Edit   </Text>
+      });
 
     costDescriptions = ["Cheap", "Moderate", "Expensive"];
     convenienceDescriptions=["Quick & Easy", "Moderate", "Complex"];
@@ -69,13 +70,22 @@ export default class ViewMeal extends React.Component {
                             
                         
                     </View>
+
+                {/* Delete Meal Button */}
+                
+                <View style={{marginTop: 80, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Button style={{backgroundColor: '#ff3b30', alignItems: 'center'}}
+                            onPress={() => {this.props.navigation.navigate('Meals', {mealToDelete: this.chosenMeal}); this.forceUpdate();}} >
+                        <Text style={{margin: 5}}>Delete Meal</Text>
+                    </Button>
+                </View>    
             
 
                 </View>
             </Content>
 
       </View>
-      
+
       </Container>
     );
   }

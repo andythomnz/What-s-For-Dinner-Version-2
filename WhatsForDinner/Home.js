@@ -6,7 +6,7 @@ import Tabs from './Tabs';
 export default class Home extends Component {
 
     //Default meals when app is used first time
-    meals = [
+    mealsDefault = [
         {
             "name": "Spaghetti Bolognese",
             "convenience": 2,
@@ -57,7 +57,7 @@ export default class Home extends Component {
         }
     ]
 
-    mealsNew = this.props.navigation.getParam('meals', []);
+    meals = this.props.navigation.getParam('meals', []);
 
     static navigationOptions = {
         title: 'What\'s For Dinner?',
@@ -72,8 +72,9 @@ export default class Home extends Component {
     
   
     render() {
-      if (this.mealsNew.length > this.meals.length) {
-        this.meals = this.mealsNew.slice(0);
+        //Load the default list of meals, if the internal list is empty
+      if (this.meals.length === 0) {
+        this.meals = this.mealsDefault.slice(0);
       }
 
       if (this.meals !== []) {

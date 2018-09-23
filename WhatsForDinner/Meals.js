@@ -28,6 +28,16 @@ export default class Meals extends React.Component {
         console.log("adding new meal provided from NewMeal page to Meals page!");
        this.meals.push(newMeal);
     }
+
+    let mealToDelete = this.props.navigation.getParam('mealToDelete', {});
+    if (mealToDelete !== undefined) {
+        console.log("found a meal to be deleted");
+        let indexToDelete = this.meals.indexOf(mealToDelete);
+        console.log("I should delete " + mealToDelete.name);
+        if (indexToDelete > -1) {
+            this.meals.splice(indexToDelete,1);
+        }
+    }
     
     return (
       <Container>

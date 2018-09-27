@@ -149,10 +149,15 @@ export default class Home extends Component {
 
         console.log("Found " + appropriateMeals.length + " appropriate meals");
 
-        let randomIndex = Math.floor(Math.random() * (appropriateMeals.length));
+        if (appropriateMeals.length > 0) {
+            let randomIndex = Math.floor(Math.random() * (appropriateMeals.length));
 
+            this.props.navigation.navigate('ChosenMeal', {chosenMeal: appropriateMeals[randomIndex]});
+        } else {
+            Alert.alert("No suitable meals found!");
+        }
 
-        this.props.navigation.navigate('ChosenMeal', {chosenMeal: appropriateMeals[randomIndex]});
+        
     }
   
     costSliderChange(costValue) {

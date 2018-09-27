@@ -11,19 +11,22 @@ export default class Tabs extends React.Component {
     newMeals = this.props.meals;
 
 
-    settings = {
+    defaultSettings = {
         breakfast: '09:00',
         lunch: '13:00',
         dinner: '19:00',
         breakfastPicker: false,
         lunchPicker: false,
         dinnerPicker: false
-    }
+    };
+
+    settings = {};
       
 
   constructor(props) {
       super(props);
       this.state = {activeTab: 0};
+      this.settings = this.defaultSettings;
   }
 
   componentDidUpdate() {
@@ -53,6 +56,16 @@ export default class Tabs extends React.Component {
     // console.log(this.meals);
 
     //this.forceUpdate();
+
+    //Check if there has been a change to the settings
+    let newSettings = this.props.settings;
+    if (newSettings != {} && newSettings != undefined) {
+        console.log("updating the settings!");
+        console.log("the new settings are: ");
+        console.log(newSettings);
+        this.settings = newSettings;
+    }
+
   }
     
   render() {
@@ -84,12 +97,13 @@ export default class Tabs extends React.Component {
     //     console.log(this.settings);
     // }
 
-
+    //Check if there is a new meal to be added
     if (this.newMeals !== undefined && (this.newMeals.length >= this.meals.length)) {
         console.log("Updating the list of meals in the Tabs component");
         this.meals = this.newMeals.slice(0);
     }
 
+    //Check if there is a meal to be deleted
     let mealToDelete = this.props.navigation.getParam('mealToDelete', {});
     if (mealToDelete !== 'undefined') {
         console.log("found a meal to be deleted");
@@ -104,6 +118,15 @@ export default class Tabs extends React.Component {
             console.log(this.meals);
         }
     }
+
+    // //Check if there has been a change to the settings
+    // let newSettings = this.props.settings;
+    // if (newSettings != {} && newSettings != undefined) {
+    //     console.log("updating the settings!");
+    //     console.log("the new settings are: ");
+    //     console.log(newSettings);
+    //     this.settings = newSettings;
+    // }
 
 
 

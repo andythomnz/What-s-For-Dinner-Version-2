@@ -78,7 +78,7 @@ export default class Settings extends React.Component {
       </View>
       
       <View>
-        <Tabs navigation={this.props.navigation} meals={this.meals} settings={this.state}> </Tabs>
+        <Tabs navigation={this.props.navigation} meals={this.meals} settings={this.settings}> </Tabs>
       </View>
       </Container>
     );

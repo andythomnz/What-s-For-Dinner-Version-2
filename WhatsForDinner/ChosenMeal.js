@@ -12,7 +12,8 @@ export default class ChosenMeal extends React.Component {
         visible: true,
         imageURL: "123345567889.com/12334456778.jpg",
         imageWidth: 0,
-        imageHeight: 0
+        imageHeight: 0,
+        imageLoading: false
     };
 
     
@@ -54,7 +55,7 @@ export default class ChosenMeal extends React.Component {
           this.setState({imageURL: imageURL});
           this.setState({imageWidth: imageWidth});
           this.setState({imageHeight: imageHeight});
-          this.setState({visible: true});
+          this.setState({visible: false});
 
         } catch (error) {
           console.error(error);
@@ -70,47 +71,65 @@ export default class ChosenMeal extends React.Component {
       console.log("Chosen Meal pages's chosenMeal is: ");
       console.log(this.chosenMeal);
 
-    return (
-      <Container>
-
-        <View style={styles.container}>
+      if (this.state.imageURL==="123345567889.com/12334456778.jpg") {
+        return(
+          <View style={styles.container}>
 
             <Content>
-
-                <View style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center', marginTop: 15}}>
-
-                    <View style={{ flex: 1, backgroundColor: 'blue' }}>
-                        <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
-                    </View>
-                    
-                
-                    <Text style={styles.name}>{this.chosenMeal.name}</Text>
-                
-
-                    <Text>Cost: {this.costDescriptions[this.chosenMeal.cost]}</Text>
-
-                    <Text>Convenience: {this.convenienceDescriptions[this.chosenMeal.convenience]}</Text>
-
-                    
-                    <Image
-                    style={{
-                        width: this.state.imageWidth,
-                        height: this.state.imageHeight}}
-                    source={{uri: this.state.imageURL}}
-                    onLoadStart={ ()=>{ this.setState({ visible: true });}}
-                    onLoadEnd={ ()=>{ this.setState({ visible: false });}}>
-
-                    </Image>
-                
-            
-
-                </View>
+              <View style={{ flex: 1, backgroundColor: 'blue' }}>
+                <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
+              </View>  
             </Content>
 
-      </View>
+          </View>
+        );
+      } else {
+          return (
+            <Container>
       
-      </Container>
-    );
+              <View style={styles.container}>
+      
+                  <Content>
+      
+                      <View style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center', marginTop: 15}}>
+      
+                          
+                          <View style={{ flex: 1, backgroundColor: 'blue' }}>
+                              <Spinner visible={this.state.imageLoading} textContent={"Loading Image..."} textStyle={{color: '#FFF'}} />
+                          </View>
+                          
+                      
+                          <Text style={styles.name}>{this.chosenMeal.name}</Text>
+                      
+      
+                          <Text>Cost: {this.costDescriptions[this.chosenMeal.cost]}</Text>
+      
+                          <Text>Convenience: {this.convenienceDescriptions[this.chosenMeal.convenience]}</Text>
+      
+                          
+                          <Image
+                          style={{
+                              width: this.state.imageWidth,
+                              height: this.state.imageHeight,
+                              marginTop: 50}}
+                          source={{uri: this.state.imageURL}}
+                          onLoadStart={ ()=>{ this.setState({ imageLoading: true });}}
+                          onLoadEnd={ ()=>{ this.setState({ imageLoading: false });}}>
+      
+                          </Image>
+                      
+                  
+      
+                      </View>
+                  </Content>
+      
+            </View>
+            
+            </Container>
+          );
+      }
+
+    
   }
 }
 

@@ -21,6 +21,11 @@ export default class Meals extends React.Component {
         console.log(this.props.navigation.getParam('meals', []));
         this.meals = this.props.navigation.getParam('meals', []);
     }
+
+    console.log("Rendering the Meals page with: ");
+    console.log(this.meals);
+
+
     newMeal = this.props.navigation.getParam('newMeal', 'none');
     console.log("New Meal is: ");
     console.log(newMeal);
@@ -29,13 +34,11 @@ export default class Meals extends React.Component {
        this.meals.push(newMeal);
     }
 
-    let mealToDelete = this.props.navigation.getParam('mealToDelete', {});
-    if (mealToDelete !== undefined) {
-        console.log("found a meal to be deleted");
-        let indexToDelete = this.meals.indexOf(mealToDelete);
-        console.log("I should delete " + mealToDelete.name);
-        if (indexToDelete > -1) {
-            this.meals.splice(indexToDelete,1);
+    let mealsToShow = [];
+
+    for (let a=0; a < this.meals.length; a++) {
+        if (this.meals[a].visible === true) {
+            mealsToShow.push(this.meals[a]);
         }
     }
     
@@ -47,10 +50,10 @@ export default class Meals extends React.Component {
 
                 <View>
                     <List
-                    dataArray={this.meals}
+                    dataArray={mealsToShow}
                     renderRow={(meal) =>
                     <ListItem
-                    onPress={() => {this.props.navigation.navigate('ViewMeal', {mealToView: meal})}}>
+                    onPress={() => {this.props.navigation.navigate('ViewMeal', {mealToView: meal, meals: this.meals})}}>
                         <Text>{meal.name}</Text>
                     </ListItem>
                     }>

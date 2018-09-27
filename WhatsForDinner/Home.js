@@ -5,58 +5,6 @@ import Tabs from './Tabs';
 
 export default class Home extends Component {
 
-    //Default meals when app is used first time
-    mealsDefault = [
-        {
-            "name": "Spaghetti Bolognese",
-            "convenience": 2,
-            "cost": 1,
-            "breakfast": false,
-            "lunch": true,
-            "dinner": true
-        },
-        {
-            "name": "Toast",
-            "convenience": 0,
-            "cost": 0,
-            "breakfast": true,
-            "lunch": true,
-            "dinner": true
-        },
-        {
-            "name": "Instant Noodles",
-            "convenience": 0,
-            "cost": 0,
-            "breakfast": true,
-            "lunch": true,
-            "dinner": true
-        },
-        {
-            "name": "Soup",
-            "convenience": 0,
-            "cost": 0,
-            "breakfast": true,
-            "lunch": true,
-            "dinner": true
-        },
-        {
-            "name": "McDonalds",
-            "convenience": 0,
-            "cost": 0,
-            "breakfast": true,
-            "lunch": true,
-            "dinner": true
-        },
-        {
-            "name": "Caesar Salad",
-            "convenience": 1,
-            "cost": 1,
-            "breakfast": false,
-            "lunch": true,
-            "dinner": false
-        }
-    ]
-
     meals = this.props.navigation.getParam('meals', []);
 
     static navigationOptions = {
@@ -72,10 +20,6 @@ export default class Home extends Component {
     
   
     render() {
-        //Load the default list of meals, if the internal list is empty
-      if (this.meals.length === 0) {
-        this.meals = this.mealsDefault.slice(0);
-      }
 
       if (this.meals !== []) {
         console.log("Home Page received following meals: ");
@@ -142,7 +86,7 @@ export default class Home extends Component {
 
         for (var i=0; i < this.meals.length; i++) {
             let currentMeal  = this.meals[i];
-            if (currentMeal.cost === this.state.costValue && currentMeal.convenience === this.state.convenienceValue) {
+            if (currentMeal.cost === this.state.costValue && currentMeal.convenience === this.state.convenienceValue && currentMeal.visible === true) {
                 appropriateMeals.push(currentMeal);
             }
         }

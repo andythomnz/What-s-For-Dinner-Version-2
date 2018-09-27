@@ -19,7 +19,8 @@ export default class NewMeal extends React.Component {
         convenience: 0,
         breakfast: true,
         lunch: false,
-        dinner: false
+        dinner: false,
+        visible: true
     }
 
     costDescriptions = ["Cheap", "Moderate", "Expensive"];
@@ -32,7 +33,8 @@ export default class NewMeal extends React.Component {
             "cost": this.state.cost,
             "breakfast": this.state.breakfast,
             "lunch": this.state.lunch,
-            "dinner": this.state.dinner
+            "dinner": this.state.dinner,
+            "visible": this.state.visible
         }
 
         this.props.navigation.navigate('Meals', {newMeal: newMeal});

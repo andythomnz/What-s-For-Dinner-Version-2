@@ -21,12 +21,74 @@ export default class Tabs extends React.Component {
     };
 
     settings = {};
+
+    //Default meals when app is used first time
+    defaultMeals = [
+        {
+            "name": "Spaghetti Bolognese",
+            "convenience": 2,
+            "cost": 1,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Toast",
+            "convenience": 0,
+            "cost": 0,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Instant Noodles",
+            "convenience": 0,
+            "cost": 0,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Soup",
+            "convenience": 0,
+            "cost": 0,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "McDonalds",
+            "convenience": 0,
+            "cost": 0,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Caesar Salad",
+            "convenience": 1,
+            "cost": 1,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": false,
+            "visible": true
+        }
+    ];
+
+    meals = [];
       
 
   constructor(props) {
       super(props);
       this.state = {activeTab: 0};
+      
       this.settings = this.defaultSettings;
+      this.meals = this.defaultMeals;
   }
 
   componentDidUpdate() {
@@ -70,6 +132,12 @@ export default class Tabs extends React.Component {
     
   render() {
 
+    if (this.props.navigation.getParam('meals', []).length > 0) {
+        console.log("TABS GOT PASSED A NEW SET OF MEALS!:");
+        console.log(this.props.navigation.getParam('meals', []));
+        this.meals = this.props.navigation.getParam('meals', []);
+    }
+
     // if (this.newMeals !== undefined && (this.newMeals.length >= this.meals.length)) {
     //     console.log("Updating the list of meals in the Tabs component");
     //     this.meals = this.newMeals.slice(0);
@@ -104,20 +172,21 @@ export default class Tabs extends React.Component {
     }
 
     //Check if there is a meal to be deleted
-    let mealToDelete = this.props.navigation.getParam('mealToDelete', {});
-    if (mealToDelete !== 'undefined') {
-        console.log("found a meal to be deleted");
-        let indexToDelete = this.meals.indexOf(mealToDelete);
-        console.log("I should delete " + mealToDelete.name);
-        console.log("The meals list currently contains");
-        console.log(this.meals);
-        console.log("the index to be deleted is: " + indexToDelete);
-        if (indexToDelete > -1) {
-            this.meals.splice(indexToDelete,1);
-            console.log("After deletion, meals now includes: ");
-            console.log(this.meals);
-        }
-    }
+    // let mealToDelete = this.props.navigation.getParam('mealToDelete', {});
+    // if (mealToDelete !== 'undefined') {
+    //     console.log("found a meal to be deleted");
+    //     let indexToDelete = this.meals.indexOf(mealToDelete);
+    //     console.log("I should delete " + mealToDelete.name);
+    //     console.log("The meals list currently contains");
+    //     console.log(this.meals);
+    //     console.log("the index to be deleted is: " + indexToDelete);
+    //     if (indexToDelete > -1) {
+    //         this.meals.splice(indexToDelete,1);
+    //         console.log("After deletion, meals now includes: ");
+    //         console.log(this.meals);
+    //     }
+        
+    // }
 
     // //Check if there has been a change to the settings
     // let newSettings = this.props.settings;

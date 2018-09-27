@@ -7,6 +7,7 @@ import Tabs from './Tabs';
 
 export default class ViewMeal extends React.Component {
 
+    meals = this.props.navigation.getParam('meals', []);
     chosenMeal = this.props.navigation.getParam('mealToView', {});
 
     
@@ -75,7 +76,21 @@ export default class ViewMeal extends React.Component {
                 
                 <View style={{marginTop: 80, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                     <Button style={{backgroundColor: '#ff3b30', alignItems: 'center'}}
-                            onPress={() => {this.props.navigation.navigate('Meals', {mealToDelete: this.chosenMeal}); this.forceUpdate();}} >
+                            onPress={() => {
+                                // let indexToDelete = this.meals.indexOf(this.chosenMeal);
+                                // console.log("I should delete " + this.chosenMeal.name);
+                                // console.log("The meals list currently contains");
+                                // console.log(this.meals);
+                                // console.log("the index to be deleted is: " + indexToDelete);
+                                // if (indexToDelete > -1) {
+                                //     this.meals.splice(indexToDelete-1,1);
+                                //     console.log("After deletion, meals now includes: ");
+                                //     console.log(this.meals);
+                                // }
+                                // this.props.navigation.navigate('Home', {meals: this.meals});
+                                this.chosenMeal.visible = false;
+                                this.props.navigation.navigate('Meals', {meals: this.meals});
+                                }} >
                         <Text style={{margin: 5}}>Delete Meal</Text>
                     </Button>
                 </View>    

@@ -8,7 +8,8 @@ export default class Settings extends React.Component {
 
     meals = this.props.navigation.getParam('meals', []);
 
-    settings = this.props.navigation.getParam('settings', {});
+    //settings = this.props.navigation.getParam('settings', {});
+    settings = this.props.navigation.state.params.settings;
 
     static navigationOptions = {
         title: 'Settings',

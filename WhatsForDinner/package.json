@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "moment": "^2.22.2",
     "native-base": "^2.8.0",
     "react": "16.5.0",
     "react-native": "0.57.0",
@@ -14,6 +15,7 @@
     "react-native-elements": "^0.19.1",
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-native-modal-datetime-picker": "^6.0.0",
+    "react-native-selectmultiple-button": "^0.1.105",
     "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.14.2"
   },

@@ -12,6 +12,10 @@ export default class Tabs extends React.Component {
 
     newSettings = this.props.settings;
 
+    tab = this.props.tab;
+    homeTabColor;
+    mealsTabColor;
+
 
     defaultSettings = {
         breakfast: '09:00',
@@ -151,7 +155,19 @@ export default class Tabs extends React.Component {
 
     console.log("Meals contains the following: ");
     console.log(this.meals);
-    
+
+    //Check which tab to highlight
+    console.log("The value for tab is: " + this.tab);
+    if (this.tab === "Home") {
+        console.log("Setting home tab colour");
+        this.homeTabColor = "#007aff";
+        this.mealsTabColor = "#666161";
+    } else if (this.tab === "Meals") {
+        console.log("Setting meal tab colour");
+        this.homeTabColor =  "#666161";
+        this.mealsTabColor = "#007aff";
+    }
+    //console.log("Home Tab Colour is: " + this.homeTabColor + " and ")
     return (
         <StyleProvider style={getTheme(material)}>
             <Footer >
@@ -159,10 +175,10 @@ export default class Tabs extends React.Component {
                     <FooterTab>
                         <Button
                         active = {this.state.activeTab === 0}
-                        onPress={() => {this.props.navigation.replace('Home', {meals: this.meals, settings: this.settings}); this.setState({activeTab: 0});}}
+                        onPress={() => {this.props.navigation.replace('Home', {meals: this.meals, settings: this.settings});}}
                         transparent>
-                            <Icon size={30} color={'#666161'} name={'ios-restaurant'} />
-                            <Text numberOfLines={1}>What To Eat</Text>
+                            <Icon size={30} color={this.homeTabColor} name={'ios-restaurant'} />
+                            <Text style={{color: this.homeTabColor}} numberOfLines={1}>What To Eat</Text>
                         </Button>
                     </FooterTab>
                 </StyleProvider>
@@ -170,14 +186,14 @@ export default class Tabs extends React.Component {
                 <FooterTab>
                     <Button
                     active = {this.state.activeTab === 1}
-                    onPress={() => {this.props.navigation.replace('Meals', {meals: this.meals, settings: this.settings});  this.setState({activeTab: 1});}}
+                    onPress={() => {this.props.navigation.replace('Meals', {meals: this.meals, settings: this.settings});}}
                     transparent>
-                        <Icon size={30} color={'#666161'} name={'md-pizza'} />
-                        <Text numberOfLines={1}>Meals</Text>
+                        <Icon size={30} color={this.mealsTabColor} name={'md-pizza'} />
+                        <Text style={{color: this.mealsTabColor}} numberOfLines={1}>Meals</Text>
                     </Button>
                 </FooterTab>
 
-                <FooterTab>
+                {/* <FooterTab>
                     <Button
                     active = {this.state.activeTab === 2}
                     onPress={() => {this.props.navigation.replace('Settings', {meals: this.meals, settings: this.settings}); this.setState({activeTab: 2});}}
@@ -185,7 +201,7 @@ export default class Tabs extends React.Component {
                         <Icon size={25} color={'#666161'} name={'md-settings'}/>
                         <Text numberOfLines={1}>Settings</Text>
                     </Button>
-                </FooterTab>
+                </FooterTab> */}
             </Footer>
         </StyleProvider>
     );

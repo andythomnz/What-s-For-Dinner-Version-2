@@ -41,13 +41,10 @@ export default class Home extends Component {
       super(props);
       this.state = {costValue: 0, costDescription: 'Cheap', convenienceValue: 0, convenienceDescription: 'Quick & Easy'};
 
-    //   this.breakfastTime = "08:00";
-    //   this.lunchTime = "13:00";
-    //   this.dinnerTime = "20:00";
+      this.breakfastTime = "08:00";
+      this.lunchTime = "13:00";
+      this.dinnerTime = "19:00";
 
-    this.breakfastTime = "08:00";
-      this.lunchTime = "18:00";
-      this.dinnerTime = "23:59";
 
       this.determineCutOffTimes();
       this.determineMealTime();
@@ -140,13 +137,13 @@ export default class Home extends Component {
                 <View>
                     <Button style={{backgroundColor: '#4cd964', alignItems: 'center'}}
                             onPress={() => {this.chooseMeal();} } >
-                        <Text style={{margin: 5}}>Help Me Choose My Meal!</Text>
+                        <Text style={{marginHorizontal: 15, marginVertical: 5}}>Help Me Choose My Meal!</Text>
                     </Button>
                 </View>    
     
             </View>
 
-            <Tabs navigation={this.props.navigation} meals={this.meals}/>
+            <Tabs navigation={this.props.navigation} meals={this.meals} tab={"Home"}/>
 
         </Container>
       );

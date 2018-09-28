@@ -65,7 +65,7 @@ export default class Meals extends React.Component {
 
 
       <View>
-        <Tabs navigation={this.props.navigation} meals={this.meals}> </Tabs>
+        <Tabs navigation={this.props.navigation} meals={this.meals} tab={"Meals"}> </Tabs>
         </View>
       </Container>
     );

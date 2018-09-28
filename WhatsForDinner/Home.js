@@ -26,6 +26,10 @@ export default class Home extends Component {
 
     defaultMeals = [];
 
+    breakfastsWanted;
+    lunchesWanted;
+    dinnersWanted;
+
 
     // static navigationOptions = {
     //     title: state.title,
@@ -52,12 +56,21 @@ export default class Home extends Component {
       switch(this.currentMeal) {
           case "breakfast":
             this.defaultMeals.push(0);
+            this.breakfastsWanted = true;
+            this.lunchesWanted = false;
+            this.dinnersWanted = false;
             break;
         case "lunch":
             this.defaultMeals.push(1);
+            this.breakfastsWanted = false;
+            this.lunchesWanted = true;
+            this.dinnersWanted = false;
             break;
         case "dinner":
             this.defaultMeals.push(2);
+            this.breakfastsWanted = false;
+            this.lunchesWanted = false;
+            this.dinnersWanted = true;
             break;
       }
 
@@ -70,7 +83,176 @@ export default class Home extends Component {
       if (this.meals !== []) {
         console.log("Home Page received following meals: ");
         console.log(this.meals);
-      } 
+      }
+
+      if (this.meals === undefined || this.meals.length == 0) {
+        // User hasn't added any meals yet - use the default
+        this.meals = [
+            {
+                "name": "Spaghetti Bolognese",
+                "convenience": 2,
+                "cost": 1,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Toast",
+                "convenience": 0,
+                "cost": 0,
+                "breakfast": true,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Instant Noodles",
+                "convenience": 0,
+                "cost": 0,
+                "breakfast": true,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Soup",
+                "convenience": 0,
+                "cost": 0,
+                "breakfast": true,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "McDonalds",
+                "convenience": 0,
+                "cost": 0,
+                "breakfast": true,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Caesar Salad",
+                "convenience": 1,
+                "cost": 1,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": false,
+                "visible": true
+            },
+            {
+                "name": "Porridge",
+                "cost": 0,
+                "convenience": 1,
+                "breakfast": true,
+                "lunch": false,
+                "dinner": false,
+                "visible": true
+            },
+            {
+                "name": "Pancakes",
+                "cost": 0,
+                "convenience": 2,
+                "breakfast": true,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "French toast with bacon",
+                "cost": 2,
+                "convenience": 2,
+                "breakfast": true,
+                "lunch": true,
+                "dinner": false,
+                "visible": true
+            },
+            {
+                "name": "Omlette",
+                "cost": 0,
+                "convenience": 1,
+                "breakfast": true,
+                "lunch": false,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Toasted sandwhich",
+                "cost": 0,
+                "convenience": 1,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Sushi",
+                "cost": 2,
+                "convenience": 0,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Krishna food",
+                "cost": 0,
+                "convenience": 0,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Stir Fry",
+                "cost": 1,
+                "convenience": 1,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Nachos",
+                "cost": 0,
+                "convenience": 1,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Nasi Goreng",
+                "cost": 0,
+                "convenience": 2,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Chicken Katsu",
+                "cost": 1,
+                "convenience": 0,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            },
+            {
+                "name": "Pad Thai",
+                "cost": 1,
+                "convenience": 0,
+                "breakfast": false,
+                "lunch": true,
+                "dinner": true,
+                "visible": true
+            }
+        ];
+      }
+    
     
       
 
@@ -156,24 +338,59 @@ export default class Home extends Component {
         console.log("Selected Values contains Lunches: " + selectedValues.includes("Lunches"));
         console.log("Selected Values contains Dinners: " + selectedValues.includes("Dinners"));
 
+        if (selectedValues.includes("Breakfasts")) {
+            this.breakfastsWanted = true;
+        } else {
+            this.breakfastsWanted = false
+        }
+
+        if (selectedValues.includes("Lunches")) {
+            this.lunchesWanted = true;
+        } else {
+            this.lunchesWanted = false
+        }
+
+        if (selectedValues.includes("Dinners")) {
+            this.dinnersWanted = true;
+        } else {
+            this.dinnersWanted = false
+        }
+
     }
   
     chooseMeal() {
         let appropriateMeals = [];
-
+        
+        console.log("meals is: " + this.meals);
         for (var i=0; i < this.meals.length; i++) {
             let currentMeal  = this.meals[i];
+            console.log("current meal: " + currentMeal);
             if (currentMeal.cost === this.state.costValue && currentMeal.convenience === this.state.convenienceValue && currentMeal.visible === true) {
                 appropriateMeals.push(currentMeal);
             }
         }
 
-        console.log("Found " + appropriateMeals.length + " appropriate meals");
+        console.log("The size of appropriateMeals1 is " + appropriateMeals.length);
 
-        if (appropriateMeals.length > 0) {
-            let randomIndex = Math.floor(Math.random() * (appropriateMeals.length));
+        let appropriateMeals2 = [];
+        for (var i=0; i < appropriateMeals.length; i++) {
+            let currentMeal = appropriateMeals[i];
+            console.log("the current meal is: ");
+            if (
+                ((currentMeal.breakfast == true) && (this.breakfastsWanted == true)) ||
+                ((currentMeal.lunch == true) && (this.lunchesWanted == true)) ||
+                ((currentMeal.dinner == true) && (this.dinnersWanted == true))
+            ) {
+                appropriateMeals2.push(currentMeal);
+            }
+        }
 
-            this.props.navigation.navigate('ChosenMeal', {chosenMeal: appropriateMeals[randomIndex]});
+        console.log("Found " + appropriateMeals2.length + " appropriate meals");
+
+        if (appropriateMeals2.length > 0) {
+            let randomIndex = Math.floor(Math.random() * (appropriateMeals2.length));
+
+            this.props.navigation.navigate('ChosenMeal', {chosenMeal: appropriateMeals2[randomIndex]});
         } else {
             Alert.alert("No suitable meals found!");
         }

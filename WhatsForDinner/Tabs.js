@@ -83,6 +83,114 @@ export default class Tabs extends React.Component {
             "lunch": true,
             "dinner": false,
             "visible": true
+        },
+        {
+            "name": "Porridge",
+            "cost": 0,
+            "convenience": 1,
+            "breakfast": true,
+            "lunch": false,
+            "dinner": false,
+            "visible": true
+        },
+        {
+            "name": "Pancakes",
+            "cost": 0,
+            "convenience": 2,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "French toast with bacon",
+            "cost": 2,
+            "convenience": 2,
+            "breakfast": true,
+            "lunch": true,
+            "dinner": false,
+            "visible": true
+        },
+        {
+            "name": "Omlette",
+            "cost": 0,
+            "convenience": 1,
+            "breakfast": true,
+            "lunch": false,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Toasted sandwhich",
+            "cost": 0,
+            "convenience": 1,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Sushi",
+            "cost": 2,
+            "convenience": 0,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Krishna food",
+            "cost": 0,
+            "convenience": 0,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Stir Fry",
+            "cost": 1,
+            "convenience": 1,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Nachos",
+            "cost": 0,
+            "convenience": 1,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Nasi Goreng",
+            "cost": 0,
+            "convenience": 2,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Chicken Katsu",
+            "cost": 1,
+            "convenience": 0,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
+        },
+        {
+            "name": "Pad Thai",
+            "cost": 1,
+            "convenience": 0,
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true,
+            "visible": true
         }
     ];
 

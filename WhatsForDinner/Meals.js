@@ -10,7 +10,7 @@ export default class Meals extends React.Component {
     static navigationOptions = ({ navigation, screenProps }) => ({
         title: "Meals",
         headerLeft: null,
-        headerRight: <Text style={{fontWeight: 'bold', fontSize: 18}} onPress={()=>{ navigation.navigate('NewMeal'); }}> +   </Text>,
+        headerRight: <Text style={{fontSize: 18, color: '#007aff'}} onPress={()=>{ navigation.navigate('NewMeal'); }}> +   </Text>,
       });
 
   

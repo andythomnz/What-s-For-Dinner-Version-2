@@ -18,3 +18,9 @@ Have you ever been hungry for your evening meal but had difficulty choosing what
    selection from what remains.
    
 ## Screenshots:
+
+![Image 1](https://github.com/andythomnz/What-s-For-Dinner-Version-2/blob/master/screenshots/Slide1.png)
+
+![Image 2](https://github.com/andythomnz/What-s-For-Dinner-Version-2/blob/master/screenshots/Slide2.png)
+
+![Image 3](https://github.com/andythomnz/What-s-For-Dinner-Version-2/blob/master/screenshots/Slide3.png)

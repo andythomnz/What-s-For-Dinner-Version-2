@@ -17,6 +17,10 @@ Have you ever been hungry for your evening meal but had difficulty choosing what
    The app then filters out inappropriate meals and makes a random
    selection from what remains.
    
+## Demo:
+
+![Screen-Recording](https://github.com/andythomnz/What-s-For-Dinner-Version-2/blob/master/screenshots/recording.gif)
+   
 ## Screenshots:
 
 ![Image 1](https://github.com/andythomnz/What-s-For-Dinner-Version-2/blob/master/screenshots/Slide1.png)
